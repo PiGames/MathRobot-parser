@@ -135,7 +135,7 @@ const operations = {
   },
 
   "msqrt": node => {
-    const base = parse( node.childNodes[ 0 ], true );
+    const base = parse( node );
 
     return [ "root2", ...base, "right" ];
   },
@@ -160,9 +160,9 @@ const operations = {
           return [ ...parse( node ), "right" ];
         }
       }
-    } else {
-      return [ "\(", "\)", "left", ...parse( node ), "right" ];
     }
+
+    return [ "\(", "\)", "left", ...parse( node ), "right" ];
   }
 }
 
