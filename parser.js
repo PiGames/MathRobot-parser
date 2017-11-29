@@ -82,7 +82,7 @@ const operations = {
 		return [ ...parse( node ), "right" ];
   },
 
-  "msup": node => {
+  "msup": (node, last) => {
   	const base = parse( node.childNodes[ 0 ], true );
 
     const power = parse( node.childNodes[ 1 ], true )
@@ -91,13 +91,21 @@ const operations = {
       return [ "pow-1", ...base, "right", "right", "right", "right" ];
     }
 
-    if ( power === 2 ) {
-    	return [ "pow2", ...base, ...power, "right" ];
-    } else if ( power === 3 ) {
-    	return [ "shift", "pow2", ...power, "right" ];
-    }
+		let ret = [];
 
-    return [ "pown", ...base, "right", ...power, "right" ];
+    if ( power === 2 ) {
+    	ret = [ "pow2", ...base, ...power, "right" ];
+    } else if ( power === 3 ) {
+    	ret = [ "shift", "pow2", ...power, "right" ];
+    } else {
+			ret = [ "pown", ...base, "right", ...power, "right" ];
+		}
+
+		if ( last.nodeName === "mn" ) {
+			return [ "times", ...ret ];
+		}
+
+		return ret;
   },
 
   "mfrac": ( node, last ) => {
