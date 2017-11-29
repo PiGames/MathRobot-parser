@@ -1,8 +1,8 @@
 {
-  "name": "parser",
+  "name": "mathrobot-parser",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "parser.js",
   "scripts": {
     "start": "node index.js"
   },
