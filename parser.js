@@ -72,6 +72,9 @@ const operations = {
       case "π": {
         return [ "shift", "x10" ];
       }
+      case "i": {
+	return [ "eng" ]
+      }
       default: {
         console.log( value[ 0 ] );
       }
