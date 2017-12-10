@@ -104,7 +104,7 @@ const operations = {
 			ret = [ "pown", ...base, "right", ...power, "right" ];
 		}
 
-		if ( last.nodeName === "mn" ) {
+		if ( last && last.nodeName === "mn" ) {
 			return [ "times", ...ret ];
 		}
 
